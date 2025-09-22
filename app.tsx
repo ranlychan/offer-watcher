@@ -49,7 +49,7 @@ export default function App() {
   return (
     <div className="page">
       <header className="header">
-        <h1>招聘进度面板（Playground）</h1>
+        <h1>招聘进度面板 Offer-Watcher</h1>
         <div className="header-sub">支持用户脚本抓取、拖拽排序、网格/列表切换</div>
       </header>
 
