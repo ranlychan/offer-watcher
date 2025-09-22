@@ -1,52 +1,323 @@
+/*
+ * 通用样式与变量
+ * 使用 CSS 变量（Custom Properties）来管理颜色和间距，增强可维护性。
+ */
 :root {
-  --bg: #f6f8fb;
-  --card: #fff;
-  --accent: #0b74ff;
+  --color-bg: #f6f8fb;
+  --color-card-bg: #fff;
+  --color-text-primary: #111;
+  --color-text-secondary: #666;
+  --color-accent: #0b74ff;
+  --color-border: #ddd;
+  --color-shadow: rgba(16, 24, 40, 0.06);
+
+  --spacing-xs: 6px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 18px;
+  --spacing-xl: 20px;
 }
-* { box-sizing: border-box; }
-body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: var(--bg); color: #111; }
-.page { max-width: 1100px; margin: 18px auto; padding: 12px; }
 
-.header h1 { margin: 0; font-size: 20px; }
-.header-sub { color: #666; font-size: 13px; margin-top:6px; }
+/* 重置与基础样式 */
+* {
+  box-sizing: border-box;
+}
 
-.controls { display:flex; justify-content:space-between; align-items:center; margin:12px 0; gap:12px; }
-.controls button { padding:6px 10px; border-radius:6px; border:1px solid #ddd; background:#fff; cursor:pointer; }
-.controls button.active { background:var(--accent); color:#fff; border-color:transparent; }
-.hint { color:#666; font-size:13px; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
 
-.cards-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:12px; }
-.cards-list { display:flex; flex-direction:column; gap:12px; }
+.page {
+  max-width: 1100px;
+  margin: var(--spacing-lg) auto;
+  padding: var(--spacing-md);
+}
 
-.card-wrapper { }
-.card { background:var(--card); border-radius:10px; padding:12px; box-shadow: 0 6px 18px rgba(16,24,40,0.06); border: 1px solid rgba(0,0,0,0.04); min-height:120px; display:flex; flex-direction:column; }
-.card-header { display:flex; justify-content:space-between; align-items:center; gap:8px; }
-.card-title { font-weight:700; font-size:16px; }
-.card-actions { display:flex; gap:6px; }
-.card-actions button { padding:6px 8px; font-size:13px; border-radius:6px; border:1px solid #ddd; background:#fafafa; cursor:pointer; }
-.card-body { margin-top:8px; flex:1; display:flex; flex-direction:column; gap:8px; }
-.position { font-size:13px; color:#444; }
-.steps-row { display:flex; gap:6px; flex-wrap:wrap; margin-top:6px; }
-.step-badge { padding:6px 10px; font-size:13px; border-radius:999px; }
-.step-done { background:#e6ffed; color:#116530; border:1px solid #c6f0cf; }
-.step-current { background:#e8f0ff; color:#0b4fd6; border:1px solid #cfe0ff; }
-.step-wait { background:#f3f4f6; color:#666; border:1px solid #eee; }
-.step-error { background:#fff1f0; color:#a50e0e; border:1px solid #ffd6d6; }
+/*
+ * 头部组件样式
+ * 清晰地定义页面头部的布局和文本样式。
+ */
+.header h1 {
+  margin: 0;
+  font-size: 20px;
+}
 
-.placeholder { color:#888; font-size:13px; }
-.error { color:#a61b1b; font-size:13px; background:#fff1f0; padding:8px; border-radius:6px; }
+.header-sub {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  margin-top: var(--spacing-xs);
+}
 
-.add-card { display:flex; align-items:center; justify-content:center; cursor:pointer; min-height:120px; }
-.add-inner { color:#555; font-size:16px; }
+/*
+ * 控制台与交互组件样式
+ * 整合按钮和提示文本的样式。
+ */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: var(--spacing-md) 0;
+  gap: var(--spacing-md);
+}
 
-.modal-backdrop { position:fixed; left:0; right:0; top:0; bottom:0; background:rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center; z-index:50; padding:12px; }
-.modal { background:#fff; padding:12px; border-radius:8px; width:100%; max-width:820px; box-shadow:0 14px 40px rgba(0,0,0,0.18); }
-.modal textarea { width:100%; font-family: monospace; margin-top:8px; padding:8px; border-radius:6px; border:1px solid #ddd; }
-.modal input { width:100%; padding:6px 8px; border-radius:6px; border:1px solid #ddd; }
-.modal-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:8px; }
-.modal-actions button { padding:8px 12px; border-radius:6px; border:1px solid #ddd; background:#f6f6f6; cursor:pointer; }
-.debug { background:#f8f8f8; padding:8px; border-radius:6px; font-size:12px; max-height:180px; overflow:auto; }
-.footer { margin-top:20px; color:#666; font-size:13px; text-align:center; }
-@media (max-width:600px) {
-  .cards-grid { grid-template-columns: repeat(1, 1fr); }
+.controls button {
+  padding: var(--spacing-xs) 10px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background: var(--color-card-bg);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.controls button:hover {
+  border-color: var(--color-accent);
+}
+
+.controls button.active {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: transparent;
+}
+
+.hint {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+/*
+ * 卡片网格布局
+ * 使用 CSS Grid 实现响应式和可读性强的卡片布局。
+ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+/*
+ * 卡片样式
+ * 定义卡片的基本外观、内部结构和交互状态。
+ */
+.card-wrapper {
+  /* 确保在网格布局中卡片宽度正确 */
+  min-width: 300px;
+}
+
+.card {
+  background: var(--color-card-bg);
+  border-radius: 10px;
+  padding: var(--spacing-md);
+  box-shadow: 0 6px 18px var(--color-shadow);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out;
+  min-height: 200px; 
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 16px;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.card-actions button {
+  padding: 6px 8px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background: #fafafa;
+  cursor: pointer;
+}
+
+.card-body {
+  margin-top: var(--spacing-sm);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.position {
+  font-size: 13px;
+  color: #444;
+}
+
+.steps-row .ant-steps-item-content {
+  margin-bottom: 14px;
+}
+
+/* Ant Design Steps 的额外样式 */
+.steps-row .ant-steps-item-title {
+  font-size: 14px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.steps-row .ant-steps-item-description {
+  font-size: 12px;
+  white-space: normal;
+}
+
+.steps-row .ant-steps-item-tail {
+  /* 设置固定的行高，使垂直线保持一致的长度 */
+  padding: 18px 0 0 11px;
+}
+
+.steps-row .ant-steps-vertical {
+  /* 关键：设置步骤条容器的固定高度，确保垂直线长度一致 */
+  height: 100%;
+}
+
+/*
+ * 状态与提示样式
+ * 为错误信息、占位符等提供清晰的视觉反馈。
+ */
+.placeholder {
+  color: #888;
+  font-size: 13px;
+}
+
+.error {
+  color: #a61b1b;
+  font-size: 13px;
+  background: #fff1f0;
+  padding: var(--spacing-sm);
+  border-radius: 6px;
+}
+
+/*
+ * 新增卡片样式
+ */
+.add-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  min-height: 120px;
+  border: 1px dashed var(--color-border);
+  background: #fafafa;
+  border-radius: 10px;
+  transition: background 0.2s ease-in-out;
+}
+
+.add-card:hover {
+  background: #f0f0f0;
+}
+
+.add-inner {
+  color: #555;
+  font-size: 16px;
+}
+
+/*
+ * 弹窗（Modal）样式
+ */
+.modal-backdrop {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: var(--spacing-md);
+}
+
+.modal {
+  background: var(--color-card-bg);
+  padding: var(--spacing-md);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 820px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+}
+
+.modal textarea {
+  width: 100%;
+  font-family: monospace;
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+}
+
+.modal input {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.modal-actions button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background: #f6f6f6;
+  cursor: pointer;
+}
+
+.debug {
+  background: #f8f8f8;
+  padding: var(--spacing-sm);
+  border-radius: 6px;
+  font-size: 12px;
+  max-height: 180px;
+  overflow: auto;
+}
+
+.footer {
+  margin-top: 20px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* 移动端适配 */
+@media (max-width: 600px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
 }

@@ -86,7 +86,7 @@ export default function CardItem({ card, onEdit, onRemove, onSaveScript }) {
                 // 关键修改: 使用 getCurrentStepIndex() 设置当前进度
                 current={getCurrentStepIndex()}
                 items={getStepsItems()}
-                direction="horizontal"
+                direction="vertical"
                 responsive
               />
             </div>

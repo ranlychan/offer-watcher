@@ -29,7 +29,11 @@ export default function CardGrid({ cards, onAddCard, onReorder, onUpdateCard, on
       </div>
 
       <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="cards" direction={layoutMode === "grid" ? "horizontal" : "vertical"}>
+        {/*
+          Direction is always horizontal for better drag-and-drop behavior.
+          The layout (grid vs list) is controlled by CSS classes below.
+        */}
+        <Droppable droppableId="cards" direction="horizontal"> 
           {(provided) => (
             <div
               className={layoutMode === "grid" ? "cards-grid" : "cards-list"}
@@ -48,10 +52,6 @@ export default function CardGrid({ cards, onAddCard, onReorder, onUpdateCard, on
                       <CardItem
                         card={card}
                         onEdit={() => setEditor({ open: true, cardId: card.id, initial: card.script || "" })}
-                        onRefresh={async (setLoading, setData) => {
-                          // CardItem will call provided callback to run script (we'll let it call runUserScript)
-                          // The work is done inside CardItem; here nothing to do.
-                        }}
                         onRemove={() => onRemoveCard(card.id)}
                         onSaveScript={(newScript) => onUpdateCard(card.id, { script: newScript })}
                       />
@@ -60,8 +60,11 @@ export default function CardGrid({ cards, onAddCard, onReorder, onUpdateCard, on
                 </Draggable>
               ))}
 
-              {/* 新增卡片 */}
-              <div className="card-wrapper add-card" onClick={() => setEditor({ open: true, cardId: null, initial: "" })}>
+              {/* Add New Card Button */}
+              <div 
+                className="card-wrapper add-card" 
+                onClick={() => setEditor({ open: true, cardId: null, initial: "" })}
+              >
                 <div className="add-inner">＋ 新增卡片</div>
               </div>
 
