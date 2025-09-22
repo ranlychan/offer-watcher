@@ -1,5 +1,5 @@
 // workerRunner.js
-const PROXY_SERVER_URL = "http://localhost:3000/proxy";
+const PROXY_SERVER_URL = `http://${window.location.host}/proxy`;
 
 export async function runUserScriptInWorker(script, timeoutMs = 10000) {
   return new Promise((resolve) => {
